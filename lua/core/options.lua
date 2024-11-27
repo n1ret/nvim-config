@@ -47,7 +47,7 @@ opt.iskeyword:remove("/.")
 opt.undofile = true
 
 -- turn off hidden buffers
-opt.hidden = false
+-- opt.hidden = false
 
 -- remember last cursor position
 vim.api.nvim_create_autocmd({'BufWinEnter'}, {

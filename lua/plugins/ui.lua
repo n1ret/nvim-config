@@ -47,17 +47,17 @@ return {
       {"<A-,>", "<cmd>BufferPrevious<cr>", mode={"n", "i"}},
       {"<A-S-.>", "<cmd>BufferMoveNext<cr>", mode={"n", "i"}},
       {"<A-S-,>", "<cmd>BufferMovePrevious<cr>", mode={"n", "i"}},
-      {"<A-q>", "<cmd>BufferClose<cr>", mode={"n", "i"}}
+      {"<A-q>", "<cmd>BufferWipeout<cr>", mode={"n", "i"}}
     }
   },
   {
-   "folke/todo-comments.nvim",
-   dependencies = { "nvim-lua/plenary.nvim" },
-   opts = {}
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
   },
   {
-   "nvim-neo-tree/neo-tree.nvim",
-   dependencies = {
+    "nvim-neo-tree/neo-tree.nvim",
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim"
@@ -68,12 +68,14 @@ return {
         window = { mappings = {
           ["l"] = "open",
           ["h"] = "close_node",
-          ["<space>"] = "none"
-        }
-      }}
+          ["<space>"] = "none",
+          ["<"] = "none",
+          [">"] = "none"
+        } }
+      }
     },
     keys = {
-      {"<leader>t", "<cmd>Neotree toggle<CR>"},
+      {"<leader>t", "<cmd>Neotree reveal<CR>"},
     },
     lazy = false
   },

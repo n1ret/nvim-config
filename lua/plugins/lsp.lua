@@ -36,7 +36,9 @@ return {
     end,
     keys = {
       { "<leader>e", vim.diagnostic.open_float },
-    }
+    },
+    lazy = false,
+    enabled = false
   },
   {
     "williamboman/mason.nvim",
