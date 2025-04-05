@@ -47,5 +47,11 @@ return {
   -- },
   -- {
   --   "echasnovski/mini.pairs"
-  -- }
+  -- },
+  {
+    "lambdalisue/vim-suda",
+    keys={
+      {"<A-s>", "<cmd>SudaWrite<cr>", mode="n"}
+    }
+  }
 }
