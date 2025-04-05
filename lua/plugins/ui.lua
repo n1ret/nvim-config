@@ -72,7 +72,15 @@ return {
           ["<"] = "none",
           [">"] = "none"
         } }
-      }
+      },
+      window = { mappings = {
+        ["q"] = {
+          function()
+            vim.cmd("q")
+          end,
+          desc = "close tree"
+        }
+      } }
     },
     keys = {
       {"<leader>t", "<cmd>Neotree reveal<CR>"},
