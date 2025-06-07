@@ -7,24 +7,17 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
+      options = {
+        disabled_filetypes = { "dashboard" }
+      },
       extensions = { "neo-tree" }
     }
   },
   {
-    "rcarriga/nvim-notify",
-    opts = {
-      stages = "static",
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-      on_open = function(win)
-        vim.api.nvim_win_set_config(win, { zindex = 100 })
-      end,
-    }
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }
   },
   {
     "romgrk/barbar.nvim",
@@ -36,10 +29,10 @@ return {
     opts = {
       animation = false,
 
-      modified = {button = '●'},
+      modified = {button = "●"},
 
       sidebar_filetypes = {
-        ['neo-tree'] = {event = "BufWipeout", text = "Neo-tree"}
+        ["neo-tree"] = {event = "BufWipeout", text = "Neo-tree"}
       },
     },
     keys = {
@@ -64,7 +57,7 @@ return {
     },
     opts = {
       filesystem = {
-        hijack_netrw_behavior = "open_current",
+        hijack_netrw_behavior = "disabled",
         window = { mappings = {
           ["l"] = "open",
           ["h"] = "close_node",
@@ -99,6 +92,7 @@ return {
           "Trouble",
           "lazy",
           "notify",
+          "dashboard"
         },
       },
     }
@@ -107,5 +101,31 @@ return {
     "folke/trouble.nvim",
     opts = {},
     cmd = "Trouble"
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("dashboard").setup {
+        config = {
+          week_header = {
+            enable = true
+          },
+          shortcut = {
+            {
+              icon = " ",
+              desc = "Quit",
+              group = "DiagnosticHint",
+              action = "qa",
+              key = "q"
+            }
+          },
+          disable_move = true,
+          footer = {}
+        }
+      }
+
+      vim.api.nvim_del_augroup_by_name("dashboard")
+    end
   }
 }

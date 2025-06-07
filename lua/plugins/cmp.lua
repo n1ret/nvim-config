@@ -1,55 +1,37 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
+    "saghen/blink.cmp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    version = "1.*",
+
+    opts = {
+      keymap = { preset = "default" },
+
+      appearance = {
+        nerd_font_variant = "mono"
+      },
+
+      completion = { documentation = { auto_show = true } },
+
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer" },
+      },
+
+      fuzzy = { implementation = "prefer_rust_with_warning" }
     },
-    config = function()
-      local cmp = require("cmp")
+    config = function(_, opts)
+      local capabilities = {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+          }
+        }
+      }
 
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users. vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-          end
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered()
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<C-Space>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({select = true}),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end, {"i", "s"}),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end, {"i", "s"})
-        }),
-        sources = cmp.config.sources({
-          {name = "nvim_lsp"}
-        }, {
-          {name = "buffer"},
-          {name = "path"},
-        })
-      })
+      capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
-      -- Set up lspconfig.
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      require('blink.cmp').setup(opts)
     end
-  },
+  }
 }
