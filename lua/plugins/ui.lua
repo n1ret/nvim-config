@@ -14,12 +14,6 @@ return {
     }
   },
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {},
-    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" }
-  },
-  {
     "romgrk/barbar.nvim",
     dependencies = { "lewis6991/gitsigns.nvim", "nvim-tree/nvim-web-devicons" },
     lazy = false,
@@ -29,18 +23,23 @@ return {
     opts = {
       animation = false,
 
-      modified = {button = "●"},
+      modified = { button = "●" },
+
+      icons = {
+        button = "",
+        separator_at_end = false,
+      },
 
       sidebar_filetypes = {
-        ["neo-tree"] = {event = "BufWipeout", text = "Neo-tree"}
+        ["neo-tree"] = { event = "BufWipeout", text = "Neo-tree" }
       },
     },
     keys = {
-      {"<A-.>", "<cmd>BufferNext<cr>", mode={"n", "i"}},
-      {"<A-,>", "<cmd>BufferPrevious<cr>", mode={"n", "i"}},
-      {"<A-S-.>", "<cmd>BufferMoveNext<cr>", mode={"n", "i"}},
-      {"<A-S-,>", "<cmd>BufferMovePrevious<cr>", mode={"n", "i"}},
-      {"<A-q>", "<cmd>BufferWipeout<cr>", mode={"n", "i"}}
+      { "<A-.>",   "<cmd>BufferNext<cr>",         mode = { "n", "i" } },
+      { "<A-,>",   "<cmd>BufferPrevious<cr>",     mode = { "n", "i" } },
+      { "<A-S-.>", "<cmd>BufferMoveNext<cr>",     mode = { "n", "i" } },
+      { "<A-S-,>", "<cmd>BufferMovePrevious<cr>", mode = { "n", "i" } },
+      { "<A-q>",   "<cmd>BufferWipeout<cr>",      mode = { "n", "i" } }
     }
   },
   {
@@ -58,25 +57,29 @@ return {
     opts = {
       filesystem = {
         hijack_netrw_behavior = "disabled",
-        window = { mappings = {
-          ["l"] = "open",
-          ["h"] = "close_node",
-          ["<space>"] = "none",
-          ["<"] = "none",
-          [">"] = "none"
-        } }
-      },
-      window = { mappings = {
-        ["q"] = {
-          function()
-            vim.cmd("q")
-          end,
-          desc = "close tree"
+        window = {
+          mappings = {
+            ["l"] = "open",
+            ["h"] = "close_node",
+            ["<space>"] = "none",
+            ["<"] = "none",
+            [">"] = "none"
+          }
         }
-      } }
+      },
+      window = {
+        mappings = {
+          ["q"] = {
+            function()
+              vim.cmd("q")
+            end,
+            desc = "close tree"
+          }
+        }
+      }
     },
     keys = {
-      {"<leader>t", "<cmd>Neotree reveal<CR>"},
+      { "<leader>t", "<cmd>Neotree reveal<CR>" },
     },
     lazy = false
   },

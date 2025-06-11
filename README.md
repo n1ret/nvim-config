@@ -2,6 +2,10 @@
 
 ## Requirements
 
+Soft:
+
+- NeoVim >= 0.11.2
+
 Fonts:
 
 - Noto Color Emoji

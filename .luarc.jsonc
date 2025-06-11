@@ -1,5 +1,5 @@
 {
-  "Lua.diagnostics.globals": ["vim"],
+  // "Lua.diagnostics.globals": ["vim"],
   "Lua.workspace.library": [
     "/usr/share/nvim/runtime"
   ]
