@@ -1,3 +1,5 @@
+# I just looked at how many plugins are written by the creator of LazyVim and switched to it)
+
 # My NeoVim config
 
 ## Requirements
@@ -10,4 +12,3 @@ Fonts:
 
 - Noto Color Emoji
 - Nerd Fonts 3.0.0
-
