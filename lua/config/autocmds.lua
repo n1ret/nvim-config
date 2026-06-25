@@ -10,10 +10,19 @@ vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 -- Disable diagnostics for .env files
 local lsp_hacks = vim.api.nvim_create_augroup("LspHacks", { clear = true })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
-	group = lsp_hacks,
-	pattern = "*.env*",
-	callback = function(e)
-		vim.diagnostic.enable(false, { bufnr = e.buf })
-	end,
+  group = lsp_hacks,
+  pattern = "*.env*",
+  callback = function(e)
+    vim.diagnostic.enable(false, { bufnr = e.buf })
+  end,
+})
+
+-- Custom modelines logic
+local nvim_modeline = vim.api.nvim_create_augroup("NvimModeline", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "BufWritePost" }, {
+  group = nvim_modeline,
+  callback = function(e)
+    N1ret.modeline.process(e.buf)
+  end,
 })
 

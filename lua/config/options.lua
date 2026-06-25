@@ -4,3 +4,13 @@
 
 vim.g.autoformat = false
 
+---@class N1ret
+---@field modeline Modeline
+N1ret = {
+  modeline = require("classes.modeline")
+}
+
+N1ret.modeline.register("nodiagnostics", function (buf)
+  vim.diagnostic.enable(false, { bufnr = buf })
+end)
+
