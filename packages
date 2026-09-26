@@ -1,1 +1,3 @@
-neovim fd
+#!/bin/sh
+
+paru -S --needed neovim fd unzip npm
