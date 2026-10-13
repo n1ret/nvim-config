@@ -3,4 +3,6 @@
 -- Add any additional keymaps here
 
 vim.keymap.set({ 'n', 'v' }, 'd', '"_d')
+vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelUp>", "<ScrollWheelRight>")
+vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelDown>", "<ScrollWheelLeft>")
 

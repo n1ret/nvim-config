@@ -25,4 +25,3 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "BufWritePost" }, {
     N1ret.modeline.process(e.buf)
   end,
 })
-
